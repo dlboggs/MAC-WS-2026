@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "maximo": {
+      "type": "streamable-http",
+      "url": "https://<MAXIMO_MCP_HOST>/mcp",
+      "headers": {
+        "apikey": "<MAXIMO_API_KEY>"
+      },
+      "disabled": false
+    }
+  }
+}

@@ -1,0 +1,6 @@
+When calling the Inspection Failure Advisor tool, do not pass the user's raw description
+directly as the finding argument. Instead, use your own language understanding to
+semantically classify the finding into the most appropriate failure category based on the
+tool's description and the intent of the user's message. Pass the classified category as
+the finding value. If the description does not clearly match any known category, pass the
+original text as-is.

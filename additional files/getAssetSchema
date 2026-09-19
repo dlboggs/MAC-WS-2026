@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "assetnum":        { "type": "string" },
+    "description":     { "type": "string" },
+    "siteid":          { "type": "string" },
+    "location":        { "type": "string" },
+    "status":          { "type": "string" },
+    "isrunning":       { "type": "boolean" },
+    "failurecode":     { "type": "string" },
+    "priority":        { "type": "string" },
+    "serialnum":       { "type": "string" },
+    "manufacturer":    { "type": "string" },
+    "installdate":     { "type": "string" },
+    "warrantyexpdate": { "type": "string" },
+    "ytdcost":         { "type": "number" },
+    "totalcost":       { "type": "number" },
+    "replacecost":     { "type": "number" }
+  }
+}

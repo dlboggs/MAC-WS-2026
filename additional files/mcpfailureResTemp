@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "severity": {
+      "type": "string"
+    },
+    "priority": {
+      "type": "integer"
+    },
+    "craft": {
+      "type": "string"
+    },
+    "recommendedAction": {
+      "type": "string"
+    },
+    "matchedRule": {
+      "type": "string"
+    }
+  }
+}

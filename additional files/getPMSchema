@@ -1,0 +1,28 @@
+{
+  "type": "object",
+  "properties": {
+    "pmcount": { "type": "integer" },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "pmnum":         { "type": "string" },
+          "description":   { "type": "string" },
+          "assetnum":      { "type": "string" },
+          "location":      { "type": "string" },
+          "route":         { "type": "string" },
+          "siteid":        { "type": "string" },
+          "status":        { "type": "string" },
+          "lastcompdate":  { "type": "string" },
+          "nextdate":      { "type": "string" },
+          "laststartdate": { "type": "string" },
+          "frequency":     { "type": "integer" },
+          "frequnit":      { "type": "string" },
+          "jpnum":         { "type": "string" },
+          "worktype":      { "type": "string" }
+        }
+      }
+    }
+  }
+}

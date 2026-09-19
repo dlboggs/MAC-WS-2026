@@ -1,0 +1,28 @@
+{
+  "mcpServers": {
+    "bob-marketplace": {
+      "type": "streamable-http",
+      "url": "http://127.0.0.1:61856/mcp",
+      "headers": {
+        "Bob-Marketplace-Token": "bob-marketplace-local"
+      },
+      "disabled": false,
+      "alwaysAllow": [
+        "search_assets",
+        "get_asset",
+        "list_installed",
+        "list_favorites",
+        "suggest_assets",
+        "list_updates"
+      ]
+    },
+    "maximo_CHANGE_TO_ASSIGNED_ENV": {
+      "type": "streamable-http",
+      "url": "MCP-URL-HERE",
+      "headers": {
+        "apikey": "APIKEY-HERE"
+      },
+      "disabled": false
+    }
+  }
+}
