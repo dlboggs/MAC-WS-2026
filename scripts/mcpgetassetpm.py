@@ -27,17 +27,22 @@ try:
     userInfo = mxServer.getSystemUserInfo()
     pmSet    = mxServer.getMboSet("PM", userInfo)
 
+    # Read input variables safely — they may not be bound if not passed by caller
+    _assetnum = globals().get('assetnum', None)
+    _location = globals().get('location', None)
+    _siteid   = globals().get('siteid', None)
+
     # Build WHERE clause dynamically from whichever inputs were provided
     conditions = []
 
-    if assetnum:
-        conditions.append("assetnum='%s'" % assetnum)
-    if location:
-        conditions.append("location='%s'" % location)
+    if _assetnum:
+        conditions.append("assetnum='%s'" % _assetnum)
+    if _location:
+        conditions.append("location='%s'" % _location)
     # route is not exposed as a script variable due to Jython type binding limitations
     # pass route filtering via location if needed
-    if siteid:
-        conditions.append("siteid='%s'" % siteid)
+    if _siteid:
+        conditions.append("siteid='%s'" % _siteid)
 
     if len(conditions) == 0:
         responseBody = '{"error":"At least one of assetnum or location must be provided"}'
@@ -50,20 +55,21 @@ try:
         pm = pmSet.getMbo(i)
 
         while pm is not None:
-            pmnum         = pm.getString("PMNUM")
-            description   = pm.getString("DESCRIPTION").replace('"', '\\"')
-            pm_assetnum   = pm.getString("ASSETNUM")
-            pm_location   = pm.getString("LOCATION")
-            pm_route      = pm.getString("ROUTE")
-            pm_siteid     = pm.getString("SITEID")
-            status        = pm.getString("STATUS")
-            lastcompdate  = pm.getString("LASTCOMPDATE")
-            nextdate      = pm.getString("NEXTDATE")
-            laststartdate = pm.getString("LASTSTARTDATE")
+            pmnum         = pm.getString("PMNUM") or ""
+            desc_raw      = pm.getString("DESCRIPTION")
+            description   = desc_raw.replace('"', '\\"') if desc_raw else ""
+            pm_assetnum   = pm.getString("ASSETNUM") or ""
+            pm_location   = pm.getString("LOCATION") or ""
+            pm_route      = pm.getString("ROUTE") or ""
+            pm_siteid     = pm.getString("SITEID") or ""
+            status        = pm.getString("STATUS") or ""
+            lastcompdate  = pm.getString("LASTCOMPDATE") or ""
+            nextdate      = pm.getString("NEXTDATE") or ""
+            laststartdate = pm.getString("LASTSTARTDATE") or ""
             frequency     = str(pm.getInt("FREQUENCY"))
-            frequnit      = pm.getString("FREQUNIT")
-            jpnum         = pm.getString("JPNUM")
-            worktype      = pm.getString("WORKTYPE")
+            frequnit      = pm.getString("FREQUNIT") or ""
+            jpnum         = pm.getString("JPNUM") or ""
+            worktype      = pm.getString("WORKTYPE") or ""
 
             record = '{"pmnum":"%s","description":"%s","assetnum":"%s","location":"%s","route":"%s","siteid":"%s","status":"%s","lastcompdate":"%s","nextdate":"%s","laststartdate":"%s","frequency":%s,"frequnit":"%s","jpnum":"%s","worktype":"%s"}' % (
                 pmnum, description, pm_assetnum, pm_location, pm_route, pm_siteid,
